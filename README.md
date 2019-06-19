@@ -8,4 +8,4 @@ We find joy in the happiness and success of others.
 - **[Digital Ocean](https://www.digitalocean.com)**
 
 ## License
-Mudita is open-source sofywate licensed under the [MIT license](https://opensource.org/licenses/MIT)
+Mudita is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT)
