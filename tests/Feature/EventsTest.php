@@ -11,9 +11,25 @@ class EventsTest extends TestCase
     use WithFaker, RefreshDatabase;
 
     /** @test */
+    public function guests_cannot_manage_projects()
+    {
+        $event = factory('App\Event')->create();
+
+        $this->get('/events')->assertRedirect('login');
+        
+        // $this->get('/events/create')->assertRedirect('login');
+
+        $this->get($event->path())->assertRedirect('login');
+
+        $this->post('/events', $event->toArray())->assertRedirect('login');
+    }
+
+    /** @test */
     public function a_user_can_create_an_event()
     {
         $this->withoutExceptionHandling();
+
+        $this->actingAs(factory('App\User')->create());
 
         $attributes = [
             'title' => $this->faker->sentence,
@@ -25,23 +41,37 @@ class EventsTest extends TestCase
         $this->assertDatabaseHas('events', $attributes);
 
         $this->get('/events')->assertSee($attributes['title']);
-
     }
 
     /** @test */
-    public function a_user_can_view_an_event()
+    public function a_user_can_view_their_project()
     {
+        $this->be(factory('App\User')->create());
+
+        $this->withoutExceptionHandling();
+
+        $event = factory('App\Event')->create(['user_id' => auth()->id()]);
+
+        $this->get($event->path())
+            ->assertSee($event->title)
+            ->assertSee($event->description);
+    }
+
+    /** @test */
+    public function an_authenticated_user_cannot_view_the_events_of_others()
+    {
+        $this->be(factory('App\User')->create());
+
         $event = factory('App\Event')->create();
 
-        $this->get('/events/' $events->id)->
-            assertSee($event->title)->
-            assertSee($event->description);
-
+        $this->get($event->path())->assertStatus(403);
     }
 
     /** @test */
     public function an_event_requires_a_title()
     {
+        $this->actingAs(factory('App\User')->create());
+
         $attributes = factory('App\Event')->raw(['title' => '']);
 
         $this->post('/events', $attributes)->assertSessionHasErrors('title');
@@ -50,6 +80,8 @@ class EventsTest extends TestCase
         /** @test */
     public function an_event_requires_a_description()
     {
+        $this->actingAs(factory('App\User')->create());
+
         $attributes = factory('App\Event')->raw(['description' => '']);
 
         $this->post('/events', $attributes)->assertSessionHasErrors('description');

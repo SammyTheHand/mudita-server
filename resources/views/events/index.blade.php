@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
 	<title>Mudita</title>
@@ -6,9 +6,13 @@
 <body>
 	<h1>Mudita</h1>
 	<ul>
-		@foreach ($events as $event)
-		<li>{{ $event->title }}</li>
-		@endforeach
+		@forelse ($events as $event)
+		<li>
+			<a href="{{ $event->path() }}">{{ $event->title }}</a>
+		</li>
+		@empty
+		<li>No Events yet.</li>
+		@endforelse
 	</ul>
 </body>
 </html>

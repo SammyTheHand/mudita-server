@@ -9,21 +9,36 @@ class EventsController extends Controller
 {
     public function index()
     {
-    	$events = Event::all();
+    	$events = auth()->user()->events;
 
 		return view('events.index', compact('events'));
+    }
+
+    public function show(Event $event)
+    {
+        if (auth()->user()->isNot($event->user)) {
+            abort(403);
+        }
+        
+    	return view('events.show', compact('event'));
     }
 
     public function store()
     {
     	$attributes = request()->validate([
     		'title' => 'required',
-    		'description' => 'required'
+    		'description' => 'required', 
     	]);
 
-    	Event::create($attributes);
+    	auth()->user()->events()->create($attributes);
 
     	return redirect('/events');
     }
+        
+    public function create()
+    {
+        return view('events.create');
+    }
+
 
 }
