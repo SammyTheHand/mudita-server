@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                    <a href="{{ url('/events') }}" class="btn-blue">Events</a>
                 </div>
             </div>
         </div>
