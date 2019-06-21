@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	Route::get('/events', 'EventsController@index');
-	// Route::get('/projects/create', 'ProjectsController@create');
+	Route::get('/events/create', 'EventsController@create');
 	Route::get('/events/{event}', 'EventsController@show');
 	Route::post('/events', 'EventsController@store');
 });

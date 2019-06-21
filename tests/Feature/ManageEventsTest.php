@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class EventsTest extends TestCase
+class ManageEventsTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
@@ -17,7 +17,7 @@ class EventsTest extends TestCase
 
         $this->get('/events')->assertRedirect('login');
         
-        // $this->get('/events/create')->assertRedirect('login');
+        $this->get('/events/create')->assertRedirect('login');
 
         $this->get($event->path())->assertRedirect('login');
 
@@ -30,6 +30,8 @@ class EventsTest extends TestCase
         $this->withoutExceptionHandling();
 
         $this->actingAs(factory('App\User')->create());
+
+        $this->get('/events/create')->assertStatus(200);
 
         $attributes = [
             'title' => $this->faker->sentence,
