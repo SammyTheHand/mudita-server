@@ -25,4 +25,14 @@ class EventTest extends TestCase
 
 	    $this->assertInstanceOf('App\User', $event->user);
 	}
+
+	/** @test */
+	public function it_can_add_a_fence()
+	{
+	    $event = factory('App\Event')->create();
+
+	    $fence = $event->addFence('Test Fence');
+
+	    $this->assertTrue($event->fences->contains($fence));
+	}
 }

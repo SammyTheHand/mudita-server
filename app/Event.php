@@ -17,4 +17,14 @@ class Event extends Model
     {
     	return $this->belongsTo(User::class);
     }
+
+    public function fences()
+    {
+    	return $this->hasMany(Fence::class);
+    }
+
+    public function addFence($tag)
+    {
+    	return $this->fences()->create(compact('tag'));
+    }
 }

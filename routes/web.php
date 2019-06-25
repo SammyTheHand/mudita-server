@@ -23,6 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/events/create', 'EventsController@create');
 	Route::get('/events/{event}', 'EventsController@show');
 	Route::post('/events', 'EventsController@store');
+
+	Route::post('/events/{event}/fences', 'EventFencesController@store');
+	Route::patch('/events/{event}/fences/{fence}', 'EventFencesController@update');
 });
 
 Auth::routes();
