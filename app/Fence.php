@@ -9,6 +9,8 @@ class Fence extends Model
 {
     protected $guarded = [];
 
+    protected $touches = ['Event'];
+
     public function event()
     {
     	return $this->belongsTo(Event::class);

@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function events()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class)->latest('updated_at');
     }
 }
