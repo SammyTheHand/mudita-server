@@ -20,7 +20,7 @@
 				{{-- Fences --}}
 				@foreach ($event->fences as $fence)
 				<div class="card mb-3">
-					<form method="POST" action="{{ $event->path() . '/fences/' . $fence->id }}">
+					<form method="POST" action="{{ $fence->path() }}">
 						@method('PATCH')
 						@csrf
 

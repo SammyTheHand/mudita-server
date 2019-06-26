@@ -40,7 +40,7 @@ class EventFencesTest extends TestCase
         $event = factory('App\Event')->create();
         $fence = $event->addFence('Test Fence');
 
-        $this->patch($event->path() . '/fences/ ' . $fence->id, ['tag' => 'Changed'])
+        $this->patch($fence->path(), ['tag' => 'Changed'])
             ->assertStatus(403);
 
 

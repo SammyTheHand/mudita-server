@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Event;
 use App\Fence;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

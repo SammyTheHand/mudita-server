@@ -2,9 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class ManageEventsTest extends TestCase
 {
@@ -38,7 +39,9 @@ class ManageEventsTest extends TestCase
             'description' => $this->faker->paragraph
         ];
 
-        $this->post('/events', $attributes)->assertRedirect('/events');  
+        $response = $this->post('/events', $attributes);
+
+        $response->assertRedirect(Event::where($attributes)->first()->path());  
 
         $this->assertDatabaseHas('events', $attributes);
 

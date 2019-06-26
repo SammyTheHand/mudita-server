@@ -13,4 +13,9 @@ class Fence extends Model
     {
     	return $this->belongsTo(Event::class);
     }
+
+    public function path()
+    {
+    	return "/events/{$this->event->id}/fences/{$this->id}";
+    }
 }
