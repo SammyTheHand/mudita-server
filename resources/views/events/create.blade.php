@@ -1,26 +1,18 @@
 @extends ('layouts.app')
 
 @section('content')
-	<form method="POST" action="/events">
-  		@csrf
-  		<h1 class="heading is-1">Create an Event</h1>
-  		<div class="field">
-  			<label class="label" for="title">Title</label>
-			<div class="control">
-  				<input type="text" class="input" name="title" placeholder="Title">
-  			</div>
-  		</div>
-		<div class="field">
-  			<label class="label" for="description">Description</label>
-  			<div class="control">
-  				<textarea name="description" class="textarea"></textarea>
-  			</div>
-  		</div>
-  		<div class="field">
-  			<div class="control">
-  				<button type="submit" class="button us-link">Submit</button>
-  				<a href="/events">Cancel</a>
-  		</div>
-  	</div>
-  </form>
+    <div class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
+        <h1 class="htext 2xl font normal mb-10 text-center">
+            Create Your Event
+        </h1>
+        <form 
+            method="POST" 
+            action="/events"
+        >
+            @include('events.form', [
+                'event' => new App\Event,
+                'buttonText' => 'Create Event'
+            ])
+        </form> 
+    </div>
 @endsection

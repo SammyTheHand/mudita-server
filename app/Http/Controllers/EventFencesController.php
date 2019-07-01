@@ -10,9 +10,7 @@ class EventFencesController extends Controller
 {
     public function store(Event $event) 
     {
-    	if (auth()->user()->isNot($event->user)) {
-    		abort(403);
-    	}
+    	$this->authorize('update', $event);
 
     	request()->validate(['tag' => 'required']);
 
@@ -23,9 +21,7 @@ class EventFencesController extends Controller
 
     public function update(Event $event, Fence $fence)
     {
-    	if (auth()->user()->isNot($event->user)) {
-    		abort(403);
-    	}
+    	$this->authorize('update', $fence->event);
 
     	request()->validate(['tag' => 'required']);
 

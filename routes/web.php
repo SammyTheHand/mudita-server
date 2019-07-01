@@ -15,13 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	Route::get('/events', 'EventsController@index');
 	Route::get('/events/create', 'EventsController@create');
 	Route::get('/events/{event}', 'EventsController@show');
+	Route::get('/events/{event}/edit', 'EventsController@edit');
+	Route::patch('/events/{event}', 'EventsController@update');
 	Route::post('/events', 'EventsController@store');
 
 	Route::post('/events/{event}/fences', 'EventFencesController@store');

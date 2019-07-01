@@ -3,13 +3,15 @@
 namespace Tests\Feature;
 
 use App\Event;
+use App\Fence;
+use Facades\Tests\Setup\EventFactory;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 
 class EventFencesTest extends TestCase
 {
-    use RefreshDatabase;
+    use withFaker, RefreshDatabase;
 
     /** @test */
     public function guests_cannot_add_fences_to_events()
@@ -37,10 +39,9 @@ class EventFencesTest extends TestCase
     {
         $this->signIn();
 
-        $event = factory('App\Event')->create();
-        $fence = $event->addFence('Test Fence');
+        $event = EventFactory::withFences(1)->create();
 
-        $this->patch($fence->path(), ['tag' => 'Changed'])
+        $this->patch($event->fences[0]->path(), ['tag' => 'Changed'])
             ->assertStatus(403);
 
 
@@ -50,13 +51,10 @@ class EventFencesTest extends TestCase
     /** @test */
     public function an_event_can_have_fences()
     {
-        $this->signIn();
+        $event = EventFactory::create();
 
-        $event = auth()->user()->events()->create(
-            factory(Event::class)->raw()
-        );
-
-        $this->post($event->path() . '/fences', ['tag' => 'Test Fence']);
+        $this->actingAS($event->user)
+            ->post($event->path() . '/fences', ['tag' => 'Test Fence']);
 
         $this->get($event->path())
             ->assertSee('Test Fence');
@@ -65,17 +63,12 @@ class EventFencesTest extends TestCase
     /** @test */
     public function a_fence_can_be_updated()
     {
-        $this->signIn();
+        $event = EventFactory::withFences(1)->create();
 
-        $event = auth()->user()->events()->create(
-            factory(Event::class)->raw()
-        );
-
-        $fence = $event->addFence('Test Fence');
-
-        $this->patch($event->path() . '/fences/' . $fence->id, [
+        $this->actingAs($event->user)
+            ->patch($event->fences->first()->path(), [
             'tag' => 'changed'
-        ]);
+        ]); 
 
         $this->assertDatabaseHas('Fences', [
             'tag' => 'changed'
@@ -85,14 +78,12 @@ class EventFencesTest extends TestCase
     /** @test */
     public function a_fence_requires_a_tag()
     {
-        $this->signIn();
-
-        $event = auth()->user()->events()->create(
-            factory(Event::class)->raw()
-        );
+        $event = EventFactory::create();
 
         $attributes = factory('App\Fence')->raw(['tag' => '']);
 
-        $this->post($event->path() . '/fences', $attributes)->assertSessionHasErrors('tag');
+        $this->actingAs($event->user)
+            ->post($event->path() . '/fences', $attributes)
+            ->assertSessionHasErrors('tag');
     }
 }

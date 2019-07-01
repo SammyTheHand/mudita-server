@@ -16,28 +16,44 @@ class EventsController extends Controller
 
     public function show(Event $event)
     {
-        if (auth()->user()->isNot($event->user)) {
-            abort(403);
-        }
+        $this->authorize('update', $event);
         
     	return view('events.show', compact('event'));
     }
 
     public function store()
     {
-    	$attributes = request()->validate([
-    		'title' => 'required',
-    		'description' => 'required', 
-    	]);
-
-    	$event = auth()->user()->events()->create($attributes);
+    	$event = auth()->user()->events()->create($this->validateRequest());
 
     	return redirect($event->path());
+    }
+
+    public function edit(Event $event)
+    {
+        return view('events.edit', compact('event'));
+    }
+
+    public function update(Event $event)
+    {
+        $this->authorize('update', $event);
+
+        $event->update($this->validateRequest());
+
+        return redirect($event->path());
     }
         
     public function create()
     {
         return view('events.create');
+    }
+
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'notes' => 'min:3' 
+        ]);
     }
 
 
