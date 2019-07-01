@@ -9,6 +9,7 @@ $factory->define(Event::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(4),
         'description' => $faker->sentence(4),
+        'notes' => $faker->sentence(5),
         'user_id' => factory(App\User::class)
     ];
 });
