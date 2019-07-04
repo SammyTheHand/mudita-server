@@ -47,12 +47,21 @@ class EventsController extends Controller
         return view('events.create');
     }
 
+    public function destroy(Event $event)
+    {
+        $this->authorize('update', $event);
+
+        $event->delete();
+
+        return redirect('/events');
+    }
+
     protected function validateRequest()
     {
         return request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3' 
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'nullable' 
         ]);
     }
 

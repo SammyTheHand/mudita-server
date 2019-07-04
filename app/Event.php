@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     public function path()
@@ -27,4 +29,10 @@ class Event extends Model
     {
     	return $this->fences()->create(compact('tag'));
     }
+
+    public function activity()
+    {
+        return $this->hasMany(Activity::class)->latest();
+    }
+
 }

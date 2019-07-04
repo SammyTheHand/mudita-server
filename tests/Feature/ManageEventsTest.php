@@ -31,6 +31,8 @@ class ManageEventsTest extends TestCase
     /** @test */
     public function a_user_can_create_an_event()
     {
+        $this->withoutExceptionHandling();
+        
         $this->signIn();
 
         $this->get('/events/create')->assertStatus(200);
@@ -54,6 +56,33 @@ class ManageEventsTest extends TestCase
     }
 
     /** @test */
+    public function a_user_can_delete_an_event()
+    {
+        $this->withoutExceptionHandling();
+        $event = EventFactory::create();
+
+        $this->actingAs($event->user)
+             ->delete($event->path())
+             ->assertRedirect('/events');
+
+        $this->assertDatabaseMissing('events', $event->only('id'));
+    }
+
+    /** @test */
+    public function unauthorized_users_cannot_delete_events()
+    {
+        $event = EventFactory::create();
+
+        $this->delete($event->path())
+             ->assertRedirect('/login');
+
+        $this->signIn();
+
+        $this->delete($event->path())
+             ->assertStatus(403);
+    }
+
+    /** @test */
     public function a_user_can_update_an_event()
     {
         $event = EventFactory::create();
@@ -67,6 +96,17 @@ class ManageEventsTest extends TestCase
              ->assertRedirect($event->path());
 
         $this->get($event->path().'/edit')->assertOK();
+
+        $this->assertDatabaseHas('events', $attributes);
+    }
+
+    /** @test */
+    public function a_user_can_update_an_events_notes()
+    {
+        $event = EventFactory::create();
+
+        $this->actingAs($event->user)
+             ->patch($event->path(), $attributes = ['notes' => 'Changed']);
 
         $this->assertDatabaseHas('events', $attributes);
     }
