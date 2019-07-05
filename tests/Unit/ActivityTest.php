@@ -9,15 +9,15 @@ use Tests\TestCase;
 
 class ActivityTest extends TestCase
 {
-	use RefreshDatabase;
+    use RefreshDatabase;
 
-	/** @test */
-	public function it_has_a_user()
-	{
-		$user = $this->signIn();
+    /** @test */
+    public function it_has_a_user()
+    {
+        $user = $this->signIn();
 
-	    $event = EventFactory::ownedBy($user)->create();
+        $event = EventFactory::ownedBy($user)->create();
 
-	    $this->assertEquals($user->id, $event->activity->first()->user->id);
-	}
+        $this->assertEquals($user->id, $event->activity->first()->user->id);
+    }
 }

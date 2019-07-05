@@ -1,5 +1,6 @@
 <?php
 namespace App;
+
 trait RecordsActivity
 {
     /**
@@ -87,10 +88,12 @@ trait RecordsActivity
         if ($this->wasChanged()) {
             return [
                 'before' => array_except(
-                    array_diff($this->oldAttributes, $this->getAttributes()), 'updated_at'
+                    array_diff($this->oldAttributes, $this->getAttributes()),
+                    'updated_at'
                 ),
                 'after' => array_except(
-                    $this->getChanges(), 'updated_at'
+                    $this->getChanges(),
+                    'updated_at'
                 )
             ];
         }

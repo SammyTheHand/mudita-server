@@ -1,1 +1,1 @@
-{{ $activity->user->name }} updated the fence
+{{ $activity->user->name }} updated a fence

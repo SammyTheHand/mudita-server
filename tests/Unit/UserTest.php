@@ -9,13 +9,13 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-	use RefreshDatabase;
-	
-	/** @test */
-	public function a_user_has_events()
-	{
-	    $user = factory('App\User')->create();
+    use RefreshDatabase;
+    
+    /** @test */
+    public function a_user_has_events()
+    {
+        $user = factory('App\User')->create();
 
-	    $this->assertInstanceOf(Collection::class, $user->events);
-	}
+        $this->assertInstanceOf(Collection::class, $user->events);
+    }
 }

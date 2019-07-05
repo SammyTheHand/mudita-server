@@ -1,1 +1,1 @@
-{{ $activity->user->name }} created the fence
+{{ $activity->user->name }} created a fence

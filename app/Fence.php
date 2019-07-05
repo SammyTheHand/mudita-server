@@ -17,12 +17,12 @@ class Fence extends Model
 
     public function event()
     {
-    	return $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class);
     }
 
     public function path()
     {
-    	return "/events/{$this->event->id}/fences/{$this->id}";
+        return "/events/{$this->event->id}/fences/{$this->id}";
     }
 
     public function activity()
@@ -32,7 +32,7 @@ class Fence extends Model
 
     /**
      * Model events that should trigger new activity.
-     * 
+     *
      * @var array
      */
     protected static $recordableEvents = ['created', 'deleted'];

@@ -9,23 +9,23 @@ class EventsController extends Controller
 {
     public function index()
     {
-    	$events = auth()->user()->events;
+        $events = auth()->user()->events;
 
-		return view('events.index', compact('events'));
+        return view('events.index', compact('events'));
     }
 
     public function show(Event $event)
     {
         $this->authorize('update', $event);
         
-    	return view('events.show', compact('event'));
+        return view('events.show', compact('event'));
     }
 
     public function store()
     {
-    	$event = auth()->user()->events()->create($this->validateRequest());
+        $event = auth()->user()->events()->create($this->validateRequest());
 
-    	return redirect($event->path());
+        return redirect($event->path());
     }
 
     public function edit(Event $event)
@@ -61,9 +61,7 @@ class EventsController extends Controller
         return request()->validate([
             'title' => 'sometimes|required',
             'description' => 'sometimes|required',
-            'notes' => 'nullable' 
+            'notes' => 'nullable'
         ]);
     }
-
-
 }
