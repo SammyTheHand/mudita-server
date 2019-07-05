@@ -15,6 +15,7 @@ class ManageEventsTest extends TestCase
     /** @test */
     public function guests_cannot_manage_projects()
     {
+
         $event = factory('App\Event')->create();
 
         $this->get('/events')->assertRedirect('login');
@@ -37,22 +38,11 @@ class ManageEventsTest extends TestCase
 
         $this->get('/events/create')->assertStatus(200);
 
-        $attributes = [
-            'title' => $this->faker->sentence(4),
-            'description' => $this->faker->sentence(4),
-            'notes' => 'General notes here.'
-        ];
-
-        $response = $this->post('/events', $attributes);
-
-        $event = Event::where($attributes)->first();  
-
-        $response->assertRedirect($event->path());
-
-        $this->get($event->path())
-            ->assertSee($attributes['title'])
-            ->assertSee($attributes['description'])
-            ->assertSee($attributes['notes']);
+        $this->followingRedirects()
+             ->post('/events', $attributes = factory(Event::class)->raw())
+             ->assertSee($attributes['title'])
+             ->assertSee($attributes['description'])
+             ->assertSee($attributes['notes']);
     }
 
     /** @test */
@@ -76,9 +66,15 @@ class ManageEventsTest extends TestCase
         $this->delete($event->path())
              ->assertRedirect('/login');
 
-        $this->signIn();
+        $user = $this->signIn();
 
         $this->delete($event->path())
+             ->assertStatus(403);
+
+        $event->invite($user);
+
+        $this->actingAs($user)
+             ->delete($event->path())
              ->assertStatus(403);
     }
 
@@ -89,8 +85,8 @@ class ManageEventsTest extends TestCase
 
         $this->actingAs($event->user)
              ->patch($event->path(), $attributes = [
-                'title' => 'Changed', 
-                'description' => 'Changed', 
+                'title' => 'Changed',
+                'description' => 'Changed',
                 'notes' => 'Changed'
             ])
              ->assertRedirect($event->path());
@@ -123,6 +119,14 @@ class ManageEventsTest extends TestCase
     }
 
     /** @test */
+    public function a_user_can_view_all_events_they_have_been_invited_to_on_their_dashboard()
+    {
+        $event = tap(EventFactory::create())->invite($this->signIn());
+
+        $this->get('/events')->assertSee($event->title);
+    }
+
+    /** @test */
     public function an_authenticated_user_cannot_view_the_events_of_others()
     {
         $this->signIn();
@@ -132,7 +136,7 @@ class ManageEventsTest extends TestCase
         $this->get($event->path())->assertStatus(403);
     }
 
-        /** @test */
+    /** @test */
     public function an_authenticated_user_cannot_update_the_events_of_others()
     {
         $this->signIn();
@@ -152,7 +156,7 @@ class ManageEventsTest extends TestCase
         $this->post('/events', $attributes)->assertSessionHasErrors('title');
     }
 
-        /** @test */
+    /** @test */
     public function an_event_requires_a_description()
     {
         $this->signIn();

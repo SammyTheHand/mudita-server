@@ -10,8 +10,13 @@ class EventPolicy
 {
     use HandlesAuthorization;
 
+    public function manage(User $user, Event $event)
+    {
+    	return $user->is($event->user);
+    }
+
     public function update(User $user, Event $event)
     {
-        return $user->is($event->user);
+        return $user->is($event->user) || $event->members->contains($user);
     }
 }

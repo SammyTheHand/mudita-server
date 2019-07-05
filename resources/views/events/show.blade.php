@@ -7,7 +7,17 @@
 		<p class="text-gray-500 font-normal text-sm">
 			<a href="/events">Events</a> / {{ $event->title }}
 		</p>
-		<a href="{{ $event->path().'/edit' }}" class="btn-blue">Edit Event</a>
+		<div class="flex items-center">
+			@foreach ($event->members as $member)
+                <img src="{{ gravatar_url($member->email) }}"
+                     alt="{{ $member->name }}'s avatar"
+                     class="rounded-full w-8 mr-2">
+            @endforeach
+                <img src="{{ gravatar_url($event->user->email) }}"
+                     alt="{{ $event->user->name }}'s avatar"
+                     class="rounded-full w-8 mr-2">
+			<a href="{{ $event->path().'/edit' }}" class="btn-blue ml-4">Edit Event</a>
+		</div>
 	</div>
 </header>
 
@@ -51,13 +61,7 @@
 							<button type="submit" class="btn-blue">Save</button>
 					</form>
 
-					@if ($errors->any())
-					<div class="field mt-6">
-						@foreach ($errors->all() as $error)
-						<li class="text-sm text-red-500">{{ $error }}</li>
-						@endforeach
-					</div>
-					@endif	
+					@include('errors')
 					
 				</div>
 			</div>
@@ -65,8 +69,10 @@
 		<div class="lg:w-1/4 px-3 lg:py-10">
 			@include ('events.card')
 			@include ('events.activity.card')
+			@can('manage', $event)
+				@include ('events.invite')
+			@endcan
 		</div>
-
 	</div>
 </main>
 

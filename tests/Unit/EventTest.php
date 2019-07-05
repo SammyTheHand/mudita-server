@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class EventTest extends TestCase
 {
@@ -34,5 +34,15 @@ class EventTest extends TestCase
         $fence = $event->addFence('Test Fence');
 
         $this->assertTrue($event->fences->contains($fence));
+    }
+
+    /** @test */
+    public function it_can_invite_a_user()
+    {
+        $event = factory('App\Event')->create();
+
+        $event->invite($user = factory('App\User')->create());
+
+        $this->assertTrue($event->members->contains($user));
     }
 }

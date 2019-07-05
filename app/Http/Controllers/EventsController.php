@@ -9,8 +9,8 @@ class EventsController extends Controller
 {
     public function index()
     {
-        $events = auth()->user()->events;
-
+        $events = auth()->user()->accessableEvents();
+        
         return view('events.index', compact('events'));
     }
 
@@ -49,7 +49,7 @@ class EventsController extends Controller
 
     public function destroy(Event $event)
     {
-        $this->authorize('update', $event);
+        $this->authorize('manage', $event);
 
         $event->delete();
 

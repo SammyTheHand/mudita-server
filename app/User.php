@@ -41,4 +41,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class)->latest('updated_at');
     }
+
+    public function accessableEvents()
+    {
+        return Event::where('user_id', $this->id)
+        ->orWhereHas('members', function ($query) {
+            $query->where('user_id', $this->id);
+        })
+        ->get();
+    }
 }

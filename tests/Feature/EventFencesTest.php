@@ -20,7 +20,6 @@ class EventFencesTest extends TestCase
 
         $this->post($event->path() . '/fences')->assertRedirect('login');
     }
-
     /** @test */
     public function only_the_user_of_a_project_may_add_fences()
     {
@@ -34,7 +33,7 @@ class EventFencesTest extends TestCase
         $this->assertDatabaseMissing('fences', ['tag' => "Test tag"]);
     }
 
-        /** @test */
+    /** @test */
     public function only_the_user_of_a_project_may_update_fences()
     {
         $this->signIn();
@@ -68,7 +67,7 @@ class EventFencesTest extends TestCase
         $this->actingAs($event->user)
             ->patch($event->fences->first()->path(), [
             'tag' => 'changed'
-        ]); 
+        ]);
 
         $this->assertDatabaseHas('Fences', [
             'tag' => 'changed'

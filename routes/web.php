@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('/events/{event}/fences', 'EventFencesController@store');
 	Route::patch('/events/{event}/fences/{fence}', 'EventFencesController@update');
+
+	Route::post('/events/{event}/invitations', 'EventInvitationsController@store');
 });
 
 Auth::routes();
