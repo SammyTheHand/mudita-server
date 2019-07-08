@@ -4,11 +4,22 @@ namespace App\Http\Controllers\API;
 
 use App\Event;
 use App\Http\Controllers\Controller;
+use App\Transformers\EventTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 class EventsController extends Controller
 {
+    /**
+    * @var \App\Transformers\EventTransformer
+    */
+    protected $eventTransformer;
+
+    function __construct(EventTransformer $eventTransformer)
+    {
+        $this->eventTransformer = $eventTransformer;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +29,7 @@ class EventsController extends Controller
     {
         $events = Event::all();
         return Response::json([
-            'data' => $this->transformCollection($events)
+            'data' => $this->eventTransformer->transformCollection($events->all())
         ], 200);
     }
 
@@ -51,7 +62,7 @@ class EventsController extends Controller
         }
 
         return Response::json([
-            'data' => $this->transform($event)
+            'data' => $this->eventTransformer->transform($event)
         ], 200);
     }
 
@@ -76,19 +87,5 @@ class EventsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    private function transformCollection($events)
-    {
-        return array_map([$this, 'transform'], $events->toArray());
-    }
-
-    private function transform($event)
-    {
-        return [
-                'id' => $event['id'],
-                'title' => $event['title'],
-                'description' => $event['description']
-        ];
     }
 }
