@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use App\Event;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class EventsController extends Controller
 {
@@ -14,7 +16,10 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        $events = Event::all();
+        return Response::json([
+            'data' => $events->toArray()
+        ], 200);
     }
 
     /**
