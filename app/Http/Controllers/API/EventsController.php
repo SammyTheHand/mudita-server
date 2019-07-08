@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Event;
-use App\Http\Controllers\Controller;
 use App\Transformers\EventTransformer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 
-class EventsController extends Controller
+class EventsController extends APIController
 {
     /**
     * @var \App\Transformers\EventTransformer
@@ -28,9 +25,9 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::all();
-        return Response::json([
+        return $this->Respond([
             'data' => $this->eventTransformer->transformCollection($events->all())
-        ], 200);
+        ]);
     }
 
     /**
@@ -56,14 +53,12 @@ class EventsController extends Controller
 
         if ( !$event) 
         {
-            return Response::json([
-                'error' => 'Event does not exist'
-            ], 404);
+            return $this->respondNotFound('Event does not exist');
         }
 
-        return Response::json([
+        return $this->respond([
             'data' => $this->eventTransformer->transform($event)
-        ], 200);
+        ]);
     }
 
     /**
