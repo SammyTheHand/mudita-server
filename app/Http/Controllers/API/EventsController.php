@@ -18,7 +18,7 @@ class EventsController extends Controller
     {
         $events = Event::all();
         return Response::json([
-            'data' => $events->toArray()
+            'data' => $this->transformCollection($events)
         ], 200);
     }
 
@@ -41,7 +41,18 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id);
+
+        if ( !$event) 
+        {
+            return Response::json([
+                'error' => 'Event does not exist'
+            ], 404);
+        }
+
+        return Response::json([
+            'data' => $this->transform($event)
+        ], 200);
     }
 
     /**
@@ -65,5 +76,19 @@ class EventsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function transformCollection($events)
+    {
+        return array_map([$this, 'transform'], $events->toArray());
+    }
+
+    private function transform($event)
+    {
+        return [
+                'id' => $event['id'],
+                'title' => $event['title'],
+                'description' => $event['description']
+        ];
     }
 }
