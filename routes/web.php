@@ -17,10 +17,13 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api/v1'], function() {
 	Route::apiResource('events', 'API\EventsController');
+	Route::post('triggers','API\TriggersController@store');
 });
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
+
+	Route::get('/triggers', 'TriggersController@index');
 	
 	Route::resource('events', 'EventsController');
 

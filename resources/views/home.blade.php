@@ -15,7 +15,10 @@
                     @endif
 
                     You are logged in!
-                    <a href="{{ url('/events') }}" class="btn-blue">Events</a>
+                    <div class="mt-8">
+                        <a href="{{ url('/events') }}" class="btn-blue">Events</a>
+                        <a href="{{ url('/triggers') }}" class="btn-blue">Triggers</a>
+                    </div> 
                 </div>
             </div>
         </div>
