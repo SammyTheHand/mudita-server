@@ -11,8 +11,6 @@ class Fence extends Model
     
     protected $guarded = [];
 
-    public $old = [];
-
     protected $touches = ['Event'];
 
     public function event()

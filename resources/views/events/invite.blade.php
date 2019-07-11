@@ -1,6 +1,6 @@
 <div class="card flex flex-col mt-3">
 	<h3 class="font-normal text-xl py-4 -ml-5 mb-3 border-l-4 border-blue-400 pl-4">
-		Invite a User to this Event
+		Invite a Team Member
 	</h3>
 	<form method="POST" action="{{ $event->path() . '/invitations'}}" class="text-right">
 		@csrf
