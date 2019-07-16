@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div>
-			<video  id="video1" 
+			<video  id="video" 
 					class="video-js vjs-big-play-centered" 
 					poster="http://vjs.zencdn.net/v/oceans.png" 
 					controls 
@@ -45,10 +45,10 @@
 			<a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
 			</p>
 			</video>
+			<script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
+			<script src="//cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
+			<script src="/js/main.js"></script>
 		</div>
-		<script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
-		<script src="//cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
-		<script src="/js/main.js"></script>
 	</main>
 </body>
 </html>
