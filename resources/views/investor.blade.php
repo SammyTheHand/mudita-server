@@ -18,12 +18,12 @@
 </head>
 <body>
 	<header>
-		<a href="/" class="px-5 text-4xl font-nunito font-medium">Mudita</a>
+		<a href="/" class="px-5 text-4xl font-nunito font-medium text-gray-700">Mudita</a>
 	</header>
 	<main>
 		<div class="flex justify-between">
 			<div>
-				<ul class="flex justify-center font-nunito text-gray-700 mb-4">
+				<ul class="flex justify-center font-nunito text-gray-700 mb-4 font-semibold leading-loose tracking-wide">
 					<li><a href="promotion" class="px-5 hover:text-brand-green">Promotion</a></li>
 					<li><a href="instruction" class="px-5 hover:text-brand-green">Instruction</a></li>
 					<li><a href="investor" class="px-5 hover:text-brand-green border-b-4 border-brand-green">Investor</a></li>

@@ -9,7 +9,7 @@
 
 	<!-- Scripts -->
 	<link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
-	
+
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -18,13 +18,13 @@
 </head>
 <body>
 	<header>
-		<h1 class="px-5 text-4xl font-nunito font-medium">Mudita</h1>
+		<a href="/" class="px-5 text-4xl font-nunito font-medium text-gray-700">Mudita</a>
 	</header>
 	<main>
 		<div class="flex justify-between">
 			<div>
-				<ul class="flex justify-center font-nunito text-gray-700 mb-4">
-					<li><a href="promotion" class="px-5 hover:text-brand-green">Promotion</a></li>
+				<ul class="flex justify-center font-nunito text-gray-700 mb-4 font-semibold leading-loose tracking-wide">
+					<li><a href="promotion" class="px-5 hover:text-brand-green ">Promotion</a></li>
 					<li><a href="instruction" class="px-5 hover:text-brand-green border-b-4 border-brand-green">Instruction</a></li>
 					<li><a href="investor" class="px-5 hover:text-brand-green">Investor</a></li>
 				</ul>
