@@ -11,12 +11,10 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,7 +26,7 @@
                     <div class="flex justify-between items-center py-2">
                         <!-- Left Side Of Navbar -->
                         <h1>
-                            <a class="navbar-brand px-5" href="{{ url('/') }}">
+                            <a class="navbar-brand px-5 text-gray-800" href="{{ url('/') }}">
                             {{ config('app.name', 'Mudita') }}
                             </a>
                         </h1>
@@ -38,11 +36,11 @@
                                 <!-- Authentication Links -->
                                 @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link font-nunito text-gray-700" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link font-nunito text-gray-700" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                                 @endif
                                 @else
