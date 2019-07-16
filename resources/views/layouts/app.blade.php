@@ -11,10 +11,12 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -26,13 +28,13 @@
                     <div class="flex justify-between items-center py-2">
                         <!-- Left Side Of Navbar -->
                         <h1>
-                            <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', 'Laravel') }}
+                            <a class="navbar-brand px-5" href="{{ url('/') }}">
+                            {{ config('app.name', 'Mudita') }}
                             </a>
                         </h1>
                         <div>
                             <!-- Right Side Of Navbar -->
-                            <ul class="navbar-nav ml-auto">
+                            <ul class="navbar-nav ml-auto px-5">
                                 <!-- Authentication Links -->
                                 @guest
                                 <li class="nav-item">

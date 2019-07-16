@@ -1,9 +1,13 @@
 module.exports = {
   theme: {
-		shadows: {
-  			default: '1 0 5px 0 rgba(0, 0, 0, 0.08)'
+    extend: {
+    	colors: {
+  			'brand-green': '#008F88',  
   		},
-    extend: {}
+  		fontFamily: {
+  			'nunito': ['Nunito'],
+  		}
+    }
   },
   variants: {},
   plugins: []

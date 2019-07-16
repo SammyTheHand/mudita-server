@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('promotion', function() {
+	return view('promotion');
+});
+
+Route::get('instruction', function() {
+	return view('instruction');
+});
+
+Route::get('investor', function() {
+	return view('investor');
+});
+
 Route::group(['prefix' => 'api/v1'], function() {
 	Route::apiResource('events', 'API\EventsController', ['only' => ['index', 'show']]);
 	Route::apiResource('fences', 'API\FencesController', ['only' => ['index', 'show']]);

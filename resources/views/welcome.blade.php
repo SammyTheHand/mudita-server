@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <!-- <a href="https://laracasts.com/series/build-a-laravel-app-with-tdd">Watch the Laracasts</a> -->
+                    <a href="/promotion">Pitch</a>
                 </div>
             </div>
         </div>
