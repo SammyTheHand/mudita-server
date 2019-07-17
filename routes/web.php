@@ -27,7 +27,7 @@ Route::get('investor', function() {
 	return view('investor');
 });
 
-Route::group(['prefix' => 'api/v1'], function() {
+Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function() {
 	Route::apiResource('events', 'API\EventsController', ['only' => ['index', 'show']]);
 	Route::apiResource('fences', 'API\FencesController', ['only' => ['index', 'show']]);
 	Route::get('events/{event}/fences', 'API\FencesController@index');
