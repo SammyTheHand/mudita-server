@@ -36,7 +36,7 @@
 		<div>
 			<video  id="video" 
 					class="video-js vjs-big-play-centered" 
-					poster="http://vjs.zencdn.net/v/oceans.png" 
+					poster="/assets/image/mudita-logo.png" 
 					controls 
 			>
 			<source src="https://s3-eu-west-1.amazonaws.com/artificers.io/apps/mudita/instruction.mp4" type="video/mp4">
