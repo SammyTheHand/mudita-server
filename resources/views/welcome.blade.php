@@ -10,84 +10,47 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
-<div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
+        <header class="flex justify-between font-nunito bg-gray-900 px-8 py-2">
+            <a href="/" class="font-nunito text-brand-green text-4xl mx-6">Mudita</a>
+           @if (Route::has('login'))
+                <div class="flex flex-col justify-center mx-6">
                     @auth
-                        <a href="{{ url('/home') }}">Dashboard</a>
+                    <div>
+                        <a href="{{ url('/home') }}" class="text-center text-white hover:text-brand-green px-2">Dashboard</a>
+                    </div>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
+                    <div class="flex justify-center items-center">
+                        <div>
+                            <a href="{{ route('login') }}" class="text-center text-white hover:text-brand-green px-2">Login</a>
+                        </div>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                        <div>
+                            <a href="{{ route('register') }}" class="text-center text-white hover:text-brand-green px-2">Register</a>
+                        </div>
                         @endif
+                    </div>
                     @endauth
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title">
-                    Mudita
+            @endif 
+        </header>
+        <main class="px-8 bg-gray-200 h-screen">
+            <div class="flex py-6">
+                <div class="w-1/2">
+                    <img src="/assets/image/mudita-multi-fence.png">
                 </div>
-
-                <div class="links">
-                    <a href="/promotion">Pitch</a>
+                <div class="w-1/2 ml-8">
+                    <h1 class="font-nunito text-6xl font-bold leading-none">Create Immersive Events.</h1>
+                    <h2 class="font-nunito text-lg mt-4 mb-12">Mudita makes it radically easy to create, promote and measure the impact of city wide events.</h2>
+                    <div flex flex-col>
+                        <a href="/register" class="align-middle mr-5 px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Sign up for free</a>
+                        <a href="/promotion" class="align-middle mr-5 px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Watch the demo</a> 
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div> 
+        </main>   
     </body>
 </html>
