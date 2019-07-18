@@ -18,7 +18,6 @@ class CreateEventMembersTable extends Migration
             $table->unsignedInteger('event_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
-
             $table->index(['event_id', 'user_id']);
         });
     }
