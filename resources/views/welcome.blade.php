@@ -13,7 +13,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     </head>
-    <body>
+    <body class="bg-gray-100">
         <header class="flex justify-between font-nunito bg-gray-900 px-8 py-2">
             <a href="/" class="font-nunito text-brand-green text-4xl mx-6">Mudita</a>
            @if (Route::has('login'))
@@ -37,20 +37,25 @@
                 </div>
             @endif 
         </header>
-        <main class="px-8 bg-gray-200 h-screen">
-            <div class="flex py-6">
-                <div class="w-1/2">
+        <main>
+            <div class="flex">
+                <div class="hidden lg:block lg:w-1/2 lg:py-12 lg:px-4">
                     <img src="/assets/image/mudita-multi-fence.png">
                 </div>
-                <div class="w-1/2 ml-8">
-                    <h1 class="font-nunito text-6xl font-bold leading-none">Create Immersive Events.</h1>
-                    <h2 class="font-nunito text-lg mt-4 mb-12">Mudita makes it radically easy to create, promote and measure the impact of city wide events.</h2>
-                    <div flex flex-col>
-                        <a href="/register" class="align-middle mr-5 px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Sign up for free</a>
-                        <a href="/promotion" class="align-middle mr-5 px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Watch the demo</a> 
+                <div class="px-8 py-4 max-w-md mx-auto sm:max-w-xl lg:max-w-full lg:w-1/2 lg:py-32 lg:px-8">
+                    <img class="lg:hidden" src="/assets/image/mudita-multi-fence.png">
+                    <h1 class="font-nunito text-5xl font-bold leading-none">Create Immersive Events.</h1>
+                    <h2 class="font-nunito text-lg font-semibold mt-1 mb-8 sm:mb-6 lg:mt-2">Mudita makes it radically easy to create, promote and measure the impact of <span class="text-brand-green">city wide events.</span></h2>
+                    <div class="flex justify-start lg:mt-12">
+                        <div class="mr-2">
+                            <a href="/register" class="align-middle px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Sign up for free</a>
+                        </div>
+                        <div class="mx-2">
+                            <a href="/promotion" class="align-middle px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Watch the demo</a> 
+                        </div>
                     </div>
-                </div>
-            </div> 
+                </div>            
+            </div>
         </main>   
     </body>
 </html>
