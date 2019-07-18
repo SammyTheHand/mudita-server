@@ -46,13 +46,14 @@
                     <img class="lg:hidden" src="/assets/image/mudita-multi-fence.png">
                     <h1 class="font-nunito text-5xl font-bold leading-none">Create Immersive Events.</h1>
                     <h2 class="font-nunito text-lg font-semibold mt-1 mb-8 sm:mb-6 lg:mt-2">Mudita makes it radically easy to create, promote and measure the impact of <span class="text-brand-green">city wide events.</span></h2>
-                    <div class="flex justify-start lg:mt-12">
-                        <div class="mr-2">
-                            <a href="/register" class="align-middle px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Sign up for free</a>
-                        </div>
-                        <div class="mx-2">
+                    <div class="flex flex-wrap lg:flex-no-wrap content-center lg:mt-12">
+                        <div class="w-full lg:w-auto">
                             <a href="/promotion" class="align-middle px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Watch the demo</a> 
                         </div>
+                        <div class="mt-10 w-full lg:w-auto lg:mt-0 lg:ml-4">
+                            <a href="/register" class="align-middle px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Sign up for free</a>
+                        </div>
+
                     </div>
                 </div>            
             </div>
