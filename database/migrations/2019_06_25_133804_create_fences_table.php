@@ -17,6 +17,8 @@ class CreateFencesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('event_id');
             $table->text('tag');
+            $table->double('latitude');
+            $table->double('longitude');
             $table->timestamps();
         });
     }

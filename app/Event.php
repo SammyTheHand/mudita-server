@@ -25,9 +25,9 @@ class Event extends Model
         return $this->hasMany(Fence::class);
     }
 
-    public function addFence($tag)
+    public function addFence($tag, $latitude, $longitude)
     {
-        return $this->fences()->create(compact('tag'));
+        return $this->fences()->create(compact('tag', 'latitude', 'longitude'));
     }
 
     public function activity()

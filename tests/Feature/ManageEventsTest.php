@@ -88,7 +88,7 @@ class ManageEventsTest extends TestCase
                 'title' => 'Changed',
                 'description' => 'Changed',
                 'notes' => 'Changed'
-            ])
+             ])
              ->assertRedirect($event->path());
 
         $this->get($event->path().'/edit')->assertOK();

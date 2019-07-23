@@ -16,7 +16,7 @@
                 <img src="{{ gravatar_url($event->user->email) }}"
                      alt="{{ $event->user->name }}'s avatar"
                      class="rounded-full w-8 mr-2">
-			<a href="{{ $event->path().'/edit' }}" class="btn-blue ml-4">Edit Event</a>
+			<a href="{{ $event->path() . '/fences/create' }}" class="btn-blue ml-4">Create Fence</a>
 		</div>
 	</div>
 </header>
@@ -38,12 +38,6 @@
 					</form>
 				</div>
 				@endforeach
-				<div class="card mb-3">
-					<form action="{{ $event->path() . '/fences' }}" method="POST">
-						@csrf
-						<input placeholder="Adding a new fence..." class="w-full" name="tag">
-					</form>
-				</div>
 				<div>
 					<h2 class="text-lg text-grey font-normal mb-3">General Notes</h2>
 					{{-- general notes --}}

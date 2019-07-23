@@ -4,7 +4,10 @@
 	</h3>
 	<div class="text-gray-800 mb-4 flex-1">{{ str_limit($event->description, 100) }}</div>
 	@can ('manage', $event)
-		<footer>
+		<footer class="flex justify-between content-center">
+			<button>
+				<a href="{{ $event->path().'/edit' }}" class="text-xs text-left">Edit</a>
+			</button>
 			<form method="POST" action="{{ $event->path() }}" class="text-right">
 				@csrf
 				@method('DELETE') 

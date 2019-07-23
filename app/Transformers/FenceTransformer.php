@@ -7,6 +7,8 @@ class FenceTransformer extends Transformer {
         return [
                 'id' => $fence['id'],
                 'tag' => $fence['tag'],
+                'latitude' => $fence['latitude'],
+                'longitude' => $fence['longitude'],
         ];
     }
 }

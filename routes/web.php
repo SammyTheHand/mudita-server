@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('events', 'EventsController');
 
 	Route::post('/events/{event}/fences', 'EventFencesController@store');
+	Route::get('/events/{event}/fences/create', 'EventFencesController@create');
 	Route::patch('/events/{event}/fences/{fence}', 'EventFencesController@update');
 
 	Route::post('/events/{event}/invitations', 'EventInvitationsController@store');

@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class InvitationsTest extends TestCase
 {
-    use RefreshDatabase;
+    use WithFaker, RefreshDatabase ;
 
     /** @test */
     public function only_the_user_who_created_the_event_can_invite_other_users()
@@ -69,7 +69,11 @@ class InvitationsTest extends TestCase
         $event->invite($newUser = factory(User::class)->create());
 
         $this->signIn($newUser);
-        $this->post(action('EventFencesController@store', $event), $fence = ['tag' => 'New Task']);
+        $this->post(action('EventFencesController@store', $event), $fence = [
+            'tag' => 'New Task',
+            'latitude' => $this->faker->latitude,
+            'longitude' => $this->faker->longitude,
+        ]);
 
         $this->assertDatabaseHas('fences', $fence);
     }

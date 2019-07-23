@@ -44,7 +44,7 @@ class TriggerActivityTest extends TestCase
     function creating_a_fence()
     {
         $event = EventFactory::create();
-        $event->addFence('Some fence');
+        $event->addFence('Some fence', '$faker->latitude', '$faker->longitude');
         $this->assertCount(2, $event->activity);
         tap($event->activity->last(), function ($activity) {
             $this->assertEquals('created_fence', $activity->description);

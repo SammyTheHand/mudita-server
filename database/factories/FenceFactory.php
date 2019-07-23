@@ -8,6 +8,8 @@ use Faker\Generator as Faker;
 $factory->define(App\Fence::class, function (Faker $faker) {
     return [
         'tag' => $faker->sentence,
+        'latitude' => $faker->latitude,
+        'longitude' => $faker->longitude,
         'event_id' => factory(\App\Event::class)
     ];
 });

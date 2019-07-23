@@ -12,9 +12,17 @@ class EventFencesController extends Controller
     {
         $this->authorize('update', $event);
 
-        request()->validate(['tag' => 'required']);
+        request()->validate([
+            'tag' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
 
-        $event->addFence(request('tag'));
+        $event->addFence(
+            request('tag'),
+            request('latitude'),
+            request('longitude'),
+        );
 
         return redirect($event->path());
     }
@@ -23,12 +31,23 @@ class EventFencesController extends Controller
     {
         $this->authorize('update', $fence->event);
 
-        request()->validate(['tag' => 'required']);
+        request()->validate([
+            'tag' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
 
         $fence->update([
-            'tag' => request('tag')
+            'tag' => request('tag'),
+            'latitude' => request('latitude'),
+            'longitude' => request('longitude'),
         ]);
 
         return redirect($event->path());
+    }
+
+    public function create(Event $event)
+    {
+        return view('fences.create', compact('event'));
     }
 }
