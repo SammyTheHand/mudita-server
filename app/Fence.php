@@ -33,5 +33,5 @@ class Fence extends Model
      *
      * @var array
      */
-    protected static $recordableEvents = ['created', 'deleted'];
+    protected static $recordableEvents = ['created', 'deleted', 'updated'];
 }
