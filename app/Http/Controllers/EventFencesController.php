@@ -27,6 +27,11 @@ class EventFencesController extends Controller
         return redirect($event->path());
     }
 
+    public function edit(Event $event, Fence $fence)
+    {
+        return view('fences.edit', compact('event', 'fence'));
+    }
+
     public function update(Event $event, Fence $fence)
     {
         $this->authorize('update', $fence->event);
@@ -49,5 +54,14 @@ class EventFencesController extends Controller
     public function create(Event $event)
     {
         return view('fences.create', compact('event'));
+    }
+
+    public function destroy(Event $event, Fence $fence)
+    {
+        $this->authorize('manage', $event);
+
+        $fence->delete();
+
+        return redirect($event->path());
     }
 }

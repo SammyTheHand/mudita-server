@@ -29,13 +29,18 @@
 
 				{{-- fences --}}
 				@foreach ($event->fences as $fence)
-				<div class="card mb-3">
-					<form method="POST" action="{{ $fence->path() }}">
-						@method('PATCH')
-						@csrf
-
-						<input name="tag" value="{{ $fence->tag }}" class="w-full"> 
-					</form>
+				<div class="flex justify-between card mb-3">
+					<p>{{ $fence->tag }}</p>
+					<div class="flex">
+						<button class="px-4">
+							<a href="{{ $fence->path().'/edit' }}" class="text-xs text-left">Edit</a>
+						</button>
+						<form method="POST" action="{{ $fence->path() }}" class="text-right">
+							@csrf
+							@method('DELETE') 
+							<button type="submit" class="text-xs">Delete</button>
+						</form>
+					</div>
 				</div>
 				@endforeach
 				<div>
