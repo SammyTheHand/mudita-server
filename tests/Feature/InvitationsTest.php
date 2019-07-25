@@ -62,7 +62,7 @@ class InvitationsTest extends TestCase
     }
     
     /** @test */
-    public function invited_users_can_update_an_events_details()
+    public function invited_users_can_create_an_events_fences()
     {
         $event = EventFactory::create();
 
@@ -73,6 +73,9 @@ class InvitationsTest extends TestCase
             'tag' => 'New Task',
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
+            'text' => $this->faker->text,
+            'textColour' => $this->faker->hexcolor,
+            'bgColour' => $this->faker->hexcolor,
         ]);
 
         $this->assertDatabaseHas('fences', $fence);

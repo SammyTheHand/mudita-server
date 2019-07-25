@@ -31,6 +31,9 @@ class ManageFencesTest extends TestCase
             $tag = 'Test tag',
             $latidue = $this->faker->latitude,
             $longitude = $this->faker->longitude,
+            $text = $this->faker->text,
+            $textColour = $this->faker->hexcolor,
+            $bgColour = $this->faker->hexcolor,
         ];
         
         $this->post($event->path() . '/fences', $attributes)
@@ -50,6 +53,9 @@ class ManageFencesTest extends TestCase
             $tag = 'Changed',
             $latidue = $this->faker->latitude,
             $longitude = $this->faker->longitude,
+            $text = $this->faker->text,
+            $textColour = $this->faker->hexcolor,
+            $bgColour = $this->faker->hexcolor,
         ];
 
         $this->patch($event->fences[0]->path(), $attributes)
@@ -67,15 +73,16 @@ class ManageFencesTest extends TestCase
             'tag' => 'test fence',
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
+            'text' => $this->faker->text,
+            'textColour' => $this->faker->hexcolor,
+            'bgColour' => $this->faker->hexcolor,
         ];
 
         $this->actingAS($event->user)
-            ->post($event->path() . '/fences', $attributes);
+             ->post($event->path() . '/fences', $attributes);
 
         $this->get($event->path())
-            ->assertSee($attributes['tag'])
-            ->assertSee($attributes['latitude'])
-            ->assertSee($attributes['longitude']);
+             ->assertSee($attributes['tag']);
     }
 
     /** @test */
@@ -86,8 +93,11 @@ class ManageFencesTest extends TestCase
         $this->actingAs($event->user)
             ->patch($event->fences->first()->path(), $attributes = [
             'tag' => 'Changed',
-            'latitude' => $this->faker->latitude(),
-            'longitude' => $this->faker->longitude(),
+            'latitude' => $this->faker->latitude,
+            'longitude' => $this->faker->longitude,
+            'text' => $this->faker->text,
+            'textColour' => $this->faker->hexcolor,
+            'bgColour' => $this->faker->hexcolor,
             ]);
 
         $this->assertDatabaseHas('Fences', $attributes);
@@ -127,5 +137,41 @@ class ManageFencesTest extends TestCase
         $this->actingAs($event->user)
             ->post($event->path() . '/fences', $attributes)
             ->assertSessionHasErrors('longitude');
+    }
+
+    /** @test */
+    public function a_fence_requires_text()
+    {
+        $event = EventFactory::create();
+
+        $attributes = factory('App\Fence')->raw(['text' => '']);
+
+        $this->actingAs($event->user)
+            ->post($event->path() . '/fences', $attributes)
+            ->assertSessionHasErrors('text');
+    }
+
+    /** @test */
+    public function a_fence_requires_a_text_hex_colour()
+    {
+        $event = EventFactory::create();
+
+        $attributes = factory('App\Fence')->raw(['textColour' => '']);
+
+        $this->actingAs($event->user)
+            ->post($event->path() . '/fences', $attributes)
+            ->assertSessionHasErrors('textColour');
+    }
+
+    /** @test */
+    public function a_fence_requires_a_background_hex_colour()
+    {
+        $event = EventFactory::create();
+
+        $attributes = factory('App\Fence')->raw(['bgColour' => '']);
+
+        $this->actingAs($event->user)
+            ->post($event->path() . '/fences', $attributes)
+            ->assertSessionHasErrors('bgColour');
     }
 }

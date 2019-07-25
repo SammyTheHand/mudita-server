@@ -10,6 +10,9 @@ $factory->define(App\Fence::class, function (Faker $faker) {
         'tag' => $faker->sentence,
         'latitude' => $faker->latitude,
         'longitude' => $faker->longitude,
+        'text' => $faker->text,
+        'textColour' => $faker->hexcolor,
+        'bgColour' => $faker->hexcolor,
         'event_id' => factory(\App\Event::class)
     ];
 });

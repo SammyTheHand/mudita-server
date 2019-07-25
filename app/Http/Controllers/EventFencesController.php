@@ -16,12 +16,18 @@ class EventFencesController extends Controller
             'tag' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'text' => 'required',
+            'textColour' => 'required',
+            'bgColour' => 'required',
         ]);
 
         $event->addFence(
             request('tag'),
             request('latitude'),
             request('longitude'),
+            request('text'),
+            request('textColour'),
+            request('bgColour'),
         );
 
         return redirect($event->path());
@@ -40,12 +46,18 @@ class EventFencesController extends Controller
             'tag' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'text' => 'required',
+            'textColour' => 'required',
+            'bgColour' => 'required',
         ]);
 
         $fence->update([
             'tag' => request('tag'),
             'latitude' => request('latitude'),
             'longitude' => request('longitude'),
+            'text' => request('text'),
+            'textColour' => request('textColour'),
+            'bgColour' => request('bgColour'),
         ]);
 
         return redirect($event->path());

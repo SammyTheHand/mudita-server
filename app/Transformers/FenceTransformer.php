@@ -9,6 +9,9 @@ class FenceTransformer extends Transformer {
                 'tag' => $fence['tag'],
                 'latitude' => $fence['latitude'],
                 'longitude' => $fence['longitude'],
+                'text' => $fence['text'],
+                'text colour' => $fence['textColour'],
+                'background colour' => $fence['bgColour'],
         ];
     }
 }

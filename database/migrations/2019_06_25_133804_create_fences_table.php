@@ -19,6 +19,9 @@ class CreateFencesTable extends Migration
             $table->text('tag');
             $table->double('latitude');
             $table->double('longitude');
+            $table->text('text');
+            $table->text('textColour');
+            $table->text('bgColour');
             $table->timestamps();
         });
     }

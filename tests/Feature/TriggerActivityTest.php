@@ -40,16 +40,16 @@ class TriggerActivityTest extends TestCase
         });
     }
 
-        /** @test */
+    /** @test */
     function creating_a_fence()
     {
         $event = EventFactory::create();
-        $event->addFence('Some fence', '$faker->latitude', '$faker->longitude');
+        $event->addFence('some fence', '$faker->latitude', '$faker->longitude', 'some text', '$faker->hexcolor', '$faker->hexcolor');
         $this->assertCount(2, $event->activity);
         tap($event->activity->last(), function ($activity) {
             $this->assertEquals('created_fence', $activity->description);
             $this->assertInstanceOf(Fence::class, $activity->subject);
-            $this->assertEquals('Some fence', $activity->subject->tag);
+            $this->assertEquals('some fence', $activity->subject->tag);
         });
     }
 }
