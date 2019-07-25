@@ -19,6 +19,11 @@
                        value="{{ old('name') }}"
                        required
                        autofocus>
+                @if ($errors->has('name'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('name') }}</strong>
+                  </span>
+                @endif
             </div>
         </div>
 
@@ -32,6 +37,11 @@
                        name="email"
                        value="{{ old('email') }}"
                        required>
+                @if ($errors->has('email'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('email') }}</strong>
+                  </span>
+                @endif
             </div>
         </div>
 
@@ -56,6 +66,11 @@
                        class="input border border-muted-light rounded p-2 text-xs w-full"
                        name="password_confirmation"
                        required>
+                @if ($errors->has('password'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('password') }}</strong>
+                  </span>
+                @endif
             </div>
         </div>
 

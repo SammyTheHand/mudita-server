@@ -18,6 +18,11 @@
                        name="email"
                        value="{{ old('email') }}"
                        required>
+                @if ($errors->has('email'))
+                  <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('email') }}</strong>
+                  </span>
+                @endif
             </div>
         </div>
 
@@ -30,6 +35,11 @@
                        class="input border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
                        name="password"
                        required>
+                @if ($errors->has('password'))
+                  <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('password') }}</strong>
+                  </span>
+                @endif
             </div>
         </div>
 
