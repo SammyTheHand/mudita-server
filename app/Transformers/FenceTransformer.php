@@ -10,8 +10,8 @@ class FenceTransformer extends Transformer {
                 'latitude' => $fence['latitude'],
                 'longitude' => $fence['longitude'],
                 'text' => $fence['text'],
-                'text colour' => $fence['textColour'],
-                'background colour' => $fence['bgColour'],
+                'textColour' => $fence['textColour'],
+                'bgColour' => $fence['bgColour'],
         ];
     }
 }
