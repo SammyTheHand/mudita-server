@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/events/{event}/invitations', 'EventInvitationsController@store');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
     
 
 
