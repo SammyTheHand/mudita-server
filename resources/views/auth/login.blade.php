@@ -1,74 +1,76 @@
-@extends('layouts.app')
+@extends('layouts.form')
 
 @section('content')
-    <form method="POST" action="{{ route('login') }}"
-          class="lg:w-1/2 lg:mx-auto bg-blue-400 py-12 px-16 rounded shadow"
-    >
-        @csrf
-
-        <h1 class="text-2xl font-normal mb-10 text-center text-white">Login</h1>
-
-        <div class="field mb-6">
-            <label class="label text-sm mb-2 block" for="email">Email Address</label>
-
-            <div class="control">
-                <input id="email"
-                       type="email"
-                       class="input border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                       name="email"
-                       value="{{ old('email') }}"
-                       required>
-                @if ($errors->has('email'))
-                  <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('email') }}</strong>
-                  </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="field mb-6">
-            <label class="label text-sm mb-2 block" for="password">Password</label>
-
-            <div class="control">
-                <input id="password"
-                       type="password"
-                       class="input border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                       name="password"
-                       required>
-                @if ($errors->has('password'))
-                  <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('password') }}</strong>
-                  </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="field mb-6">
-            <div class="control">
-                <input class="form-check-input"
-                       type="checkbox"
-                       name="remember"
-                       id="remember"
-                        {{ old('remember') ? 'checked' : '' }}>
-
-                <label class="text-sm" for="remember">
-                    Remember Me
-                </label>
-            </div>
-        </div>
-
-        <div class="field mb-6">
-            <div class="col-md-8 offset-md-4">
-                <button type="submit" class="button mr-2">
-                    Login
-                </button>
-
-                @if (Route::has('password.request'))
-                    <a class="text-default text-sm" href="{{ route('password.request') }}">
-                        Forgot Your Password?
-                    </a>
-                @endif
-            </div>
-        </div>
-    </form>
+<div class="flex min-h-screen max-h-screen">
+	<div class="flex flex-col justify-center content-center w-2/5">
+		<div>
+			<h1 class="text-3xl font-light text-center">Welcome</h1>
+			<p class="text-lg font-hairline text-gray-600 text-center">It’s great to see you.</p>
+			<div class="flex justify-center">
+				<a class="text-xs text-brand-green underline mt-2" href="/register">Don’t have an account? Get started.</a>
+			</div>
+			<form method="POST" action="{{ route('login') }}" class="px-16 mt-16">
+			@csrf
+			<div class="mb-6">
+				<label class="text-sm mb-2" for="email">Email</label>
+				<div>
+					<input 	id="email"
+							type="email"
+							class="border rounded p-2 text-xs w-full{{ $errors->has('email') ? ' is-invalid' : '' }}"
+							name="email"
+							value="{{ old('email') }}"
+							placeholder="user@example.com" 
+							required>
+					@if ($errors->has('email'))
+						<span class="text-red-600 text-xs" role="alert">
+							<strong>{{ $errors->first('email') }}</strong>
+						</span>
+					@endif
+				</div>
+			</div>
+			<div class="mb-6">
+				<label class="text-sm mb-2" for="password">Password</label>
+				<div>
+					<input 	id="password"
+							type="password"
+							class="border rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
+							name="password"
+							placeholder="Password" 
+							required>
+					@if ($errors->has('password'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('password') }}</strong>
+						</span>
+					@endif
+				</div>
+			</div>
+			<div class="mb-6">
+				<input 	class="form-check-input"
+						type="checkbox"
+						name="remember"
+						id="remember"
+						{{ old('remember') ? 'checked' : '' }}>
+				<label class="text-sm" for="remember">
+					Remember Me
+				</label>
+			</div>
+			<div class="flex justify-center">
+				<button type="submit" class="w-full bg-brand-green text-white text-base px-4 py-2 rounded shadow">
+					LET'S GO
+				</button>
+			</div>
+			@if (Route::has('password.request'))
+				<div class="mt-4">
+					<a class="text-sm font-light text-brand-green underline" href="{{ route('password.request') }}">
+						Forgot Your Password?
+					</a>
+				</div>
+			@endif
+		</form>
+		</div>
+	</div>
+	<div class="bg-brand-green w-3/5 max-h-full">
+	   
+	</div>
+</div>
 @endsection
