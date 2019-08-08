@@ -13,61 +13,46 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="bg-gray-200">
-        <div id="app">
-            <nav class="bg-white">
-                <div class="container mx-auto">
-                    <div class="flex justify-between items-center py-2">
-                        <!-- Left Side Of Navbar -->
-                        <h1>
-                            <a class="navbar-brand px-5 text-gray-800" href="{{ url('/') }}">
-                            {{ config('app.name', 'Mudita') }}
+    <body class="bg-gray-100">
+        <header class="flex justify-between font-nunito bg-gray-900 px-8 py-2">
+            <a href="/" class="font-nunito text-brand-green text-4xl mx-6">Mudita</a>
+           <div>
+                <ul>
+                    @guest
+                    <li>
+                        <a class="text-center text-white hover:text-brand-green px-2" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="text-center text-white hover:text-brand-green px-2" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                    @endif
+                    @else
+                    <li>
+                        <a class="text-center text-white hover:text-brand-green px-2" href="/home"> 
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="text-center text-white hover:text-brand-green px-2">
+                            <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
                             </a>
-                        </h1>
-                        <div>
-                            <!-- Right Side Of Navbar -->
-                            <ul class="navbar-nav ml-auto px-5">
-                                <!-- Authentication Links -->
-                                @guest
-                                <li class="nav-item">
-                                    <a class="nav-link font-nunito text-gray-700" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link font-nunito text-gray-700" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                                @endif
-                                @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
+                </ul>
             </div>
-        </nav>
-        <main class="container mx-auto py-4">
+        </header>
+        <main class="px-8">
             @yield('content')
         </main>
     </div>

@@ -38,7 +38,7 @@
 							placeholder="Password" 
 							required>
 					@if ($errors->has('password'))
-						<span class="invalid-feedback" role="alert">
+						<span class="text-red-600 text-xs" role="alert">
 							<strong>{{ $errors->first('password') }}</strong>
 						</span>
 					@endif

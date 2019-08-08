@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mudita</title>
+        <title>{{ config('app.name', 'Mudita') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -53,7 +53,6 @@
                         <div class="mt-10 w-full lg:w-auto lg:mt-0 lg:ml-4">
                             <a href="/register" class="align-middle px-5 py-4 text-xl rounded-lg shadow-lg bg-brand-green hover:bg-teal-700 text-white font-nunito focus:outline-none focus:shadow-outline">Sign up for free</a>
                         </div>
-
                     </div>
                 </div>            
             </div>
