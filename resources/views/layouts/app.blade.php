@@ -20,7 +20,7 @@
     </head>
     <body class="bg-gray-100">
         <header class="flex justify-between font-nunito bg-gray-900 px-8 py-2">
-            <a href="/" class="font-nunito text-brand-green text-4xl mx-6">Mudita</a>
+            <a href="/" class="font-nunito text-brand-green text-4xl">Mudita</a>
            <div>
                 <ul>
                     @guest
@@ -52,7 +52,7 @@
                 </ul>
             </div>
         </header>
-        <main class="px-8">
+        <main>
             @yield('content')
         </main>
     </div>

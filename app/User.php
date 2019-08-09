@@ -50,4 +50,13 @@ class User extends Authenticatable implements MustVerifyEmail
         })
         ->get();
     }
+
+    public function recentAccessableEvents()
+    {
+        return Event::where('user_id', $this->id)
+        ->orWhereHas('members', function ($query) {
+            $query->where('user_id', $this->id);
+        })->limit(5)
+        ->get();
+    }
 }

@@ -1,18 +1,27 @@
 @extends ('layouts.app')
 
 @section('content')
-    <div class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
-        <h1 class="htext 2xl font normal mb-10 text-center">
+<div class="flex min-h-screen max-h-screen">
+    <div class="flex flex-col mt-10 w-2/5">
+        <h1 class="text-3xl font-light text-center">
             Create Your Event
         </h1>
         <form 
             method="POST" 
             action="/events"
+            class="mt-10 px-16"
         >
             @include('events.form', [
                 'event' => new App\Event,
                 'buttonText' => 'Create Event'
             ])
         </form> 
+        <a href="/events" class="px-16 mt-4 text-sm text-brand-green font-light underline">Back</a>
     </div>
+    <div class="bg-brand-green w-3/5 max-h-full">
+        <div class="block py-12 px-12">
+            <img src="/assets/image/mudita-multi-fence.png">
+        </div>
+    </div>
+</div>
 @endsection

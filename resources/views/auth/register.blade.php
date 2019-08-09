@@ -74,7 +74,8 @@
                     </div>
                 </div>
                 <div class="control">
-                    <button type="submit" class="w-full bg-brand-green text-white text-base px-4 py-2 rounded shadow">START YOUR FREE TRIAL</button>
+                    <button type="submit" class="w-full bg-brand-green text-white text-base px-4 py-2 rounded shadow hover:bg-teal-700
+focus:outline-none focus:shadow-outline">START YOUR FREE TRIAL</button>
                 </div>
             </form>
         </div>

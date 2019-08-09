@@ -55,7 +55,8 @@
 				</label>
 			</div>
 			<div class="flex justify-center">
-				<button type="submit" class="w-full bg-brand-green text-white text-base px-4 py-2 rounded shadow">
+				<button type="submit" class="w-full bg-brand-green text-white text-base px-4 py-2 rounded shadow hover:bg-teal-700
+focus:outline-none focus:shadow-outline">
 					LET'S GO
 				</button>
 			</div>
