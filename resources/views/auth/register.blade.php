@@ -80,8 +80,10 @@ focus:outline-none focus:shadow-outline">START YOUR FREE TRIAL</button>
             </form>
         </div>
     </div>
-    <div class="bg-brand-green w-3/5 max-h-full">
-       
+    <div class="bg-brand-green w-3/5 max-h-full flex flex-col justify-center">
+        <div class="p-12">
+            <img src="/assets/image/mudita-login.png">
+        </div>     
     </div>
 </div>
 @endsection
