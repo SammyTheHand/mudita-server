@@ -20,6 +20,6 @@ class TriggersController extends APIController
 
         $trigger->save();
 
-        return $this->respond('OK');
+        return $this->respond('You sent a trigger to mudita.fun!');
     }
 }

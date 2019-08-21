@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Trigger;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -13,8 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $triggers = Trigger::orderBy('id', 'desc')->take(5)->get();
+
     	$events = auth()->user()->recentAccessableEvents();
         
-        return view('home', compact('events'));
+        return view('home', compact('events'), compact('triggers'));
     }
 }

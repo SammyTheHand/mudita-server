@@ -10,7 +10,7 @@
 		@endif
 		<div class="flex items-center pb-2">
 			<h1 class="pr-4 font-bold">Recent Events</h1>
-			<a href="{{ url('/events') }}" class="text-sm underline">See all events</a>
+			<a href="{{ url('/events') }}" class="text-sm underline hover:no-underline">See all events</a>
 		</div>
 
 		@if(!$events->isEmpty())
@@ -23,7 +23,9 @@
 				</tr>
 				@forelse ($events as $event)
 				<tr>
-					<td class="text-sm pr-4">{{ $event->title }}</td>
+					<td class="text-sm pr-4">
+						<a href="{{ $event->path() }}" class="underline hover:no-underline text-brand-green">{{ $event->title }}</a>
+					</td>
 					<td class="text-sm px-4">{{ \Carbon\Carbon::parse($event->created_at)->format('d/m/Y')}}</td>
 				</tr>
 				@empty
@@ -34,18 +36,33 @@
 		    <h2>No recent events.</h2>
 		@endif
 
-
-
-
-
-
 		<div class="flex justify-around border rounded-t bg-gray-200">
 
 		</div>
 		<div class="flex items-center pt-16 pb-2">
 			<h1 class="pr-4 font-bold">Recent Triggers</h1>
-			<a href="{{ url('/triggers') }}" class="text-sm underline">See all triggers</a>
-		</div> 
+			<a href="{{ url('/triggers') }}" class="text-sm underline hover:no-underline">See all triggers</a>
+		</div>
+		@if(!$triggers->isEmpty())
+		    <table class="">
+		    	<tr>
+					<th class="text-left text-xs pr-4 uppercase">Name</th>
+					<th class="text-left text-xs px-4 uppercase">Created</th>
+				</tr>
+				@forelse ($triggers as $trigger)
+				<tr>
+					<td class="text-sm pr-4">
+						<a href="{{ url('/triggers') }}" class="underline hover:no-underline text-brand-green">{{ $trigger->title }}</a>
+					</td>
+					<td class="text-sm px-4">{{ \Carbon\Carbon::parse($trigger->created_at)->format('d/m/Y H:i:s')}}</td>
+				</tr>
+				@empty
+					<h1>Nothing</h1>
+				@endforelse
+			</table>
+		@else
+		    <h2>No recent events.</h2>
+		@endif 
 	</div>
 	<div class="w-1/5">
 		<div class="flex justify-end">

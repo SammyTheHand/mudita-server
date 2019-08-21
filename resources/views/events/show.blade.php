@@ -16,7 +16,7 @@
 	                <img src="{{ gravatar_url($event->user->email) }}"
 	                     alt="{{ $event->user->name }}'s avatar"
 	                     class="rounded-full w-8 mr-2">
-				<a href="{{ $event->path() . '/fences/create' }}" class="ml-4 bg-brand-green text-white text-base px-4 py-2 rounded shadow hover:bg-teal-700 focus:outline-none focus:shadow-outline">Create Fence</a>
+				<a href="{{ $event->path() . '/fences/create' }}" class="ml-4 bg-brand-green text-white text-base px-4 py-2 rounded shadow hover:bg-teal-700 focus:outline-none focus:shadow-outline">Create a new fence</a>
 			</div>
 		</div>
 	</header>
