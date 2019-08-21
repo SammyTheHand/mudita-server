@@ -36,10 +36,7 @@
 		    <h2>No recent events.</h2>
 		@endif
 
-		<div class="flex justify-around border rounded-t bg-gray-200">
-
-		</div>
-		<div class="flex items-center pt-16 pb-2">
+		<div class="flex items-center pt-8 pb-2">
 			<h1 class="pr-4 font-bold">Recent Triggers</h1>
 			<a href="{{ url('/triggers') }}" class="text-sm underline hover:no-underline">See all triggers</a>
 		</div>
@@ -61,7 +58,7 @@
 				@endforelse
 			</table>
 		@else
-		    <h2>No recent events.</h2>
+		    <h2>No recent triggers.</h2>
 		@endif 
 	</div>
 	<div class="w-1/5">
