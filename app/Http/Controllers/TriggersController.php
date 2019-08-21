@@ -10,7 +10,7 @@ class TriggersController extends Controller
     
     public function index()
     {
-        $triggers = Trigger::all();
+        $triggers = Trigger::orderBy('created_at', 'desc')->get();
         
         return view('triggers.index', compact('triggers'));
     }

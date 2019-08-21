@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $triggers = Trigger::orderBy('id', 'desc')->take(5)->get();
+        $triggers = Trigger::orderBy('created_at', 'desc')->take(5)->get();
 
     	$events = auth()->user()->recentAccessableEvents();
         
