@@ -2,9 +2,11 @@
 
 @section('content')
 <div class="p-8">
-	<header class="flex items-center mb-3">
-		<div class="flex justify-between items-center w-full">
-			<h2 class="text-gray-500 font-normal text-sm">Events</h2>
+	<header class="flex items-center mb-6 pb-4">
+		<div class="flex justify-between w-full">
+			<p class="text-gray-500 font-normal text-sm">
+				<a href="/events">Events</a>
+			</p>
 			<a href="/events/create" class="bg-brand-green text-white text-base px-4 py-2 rounded shadow hover:bg-teal-700 focus:outline-none focus:shadow-outlin">Create a new event</a>
 		</div>
 	</header>

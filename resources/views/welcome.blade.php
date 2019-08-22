@@ -15,9 +15,9 @@
     </head>
     <body class="bg-gray-100">
         <header class="flex justify-between font-nunito bg-gray-900 px-8 py-2">
-            <a href="/" class="font-nunito text-brand-green text-4xl mx-6">Mudita</a>
+            <a href="/" class="font-nunito text-brand-green text-4xl">Mudita</a>
            @if (Route::has('login'))
-                <div class="flex flex-col justify-center mx-6">
+                <div class="flex flex-col justify-center">
                     @auth
                     <div>
                         <a href="{{ url('/home') }}" class="text-center text-white hover:text-brand-green px-2">Dashboard</a>

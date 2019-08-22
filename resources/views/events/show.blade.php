@@ -3,7 +3,7 @@
 @section('content')
 <div class="p-8">
 	<header class="flex items-center mb-6 pb-4">
-		<div class="flex justify-between items- w-full">
+		<div class="flex justify-between w-full">
 			<p class="text-gray-500 font-normal text-sm">
 				<a href="/events">Events</a> / {{ $event->title }}
 			</p>
