@@ -9,7 +9,7 @@
         <form 
             method="POST" 
             action="{{ $event->path() }}"
-            class="mt-10 px-16"
+            class="mt-10 px-8"
         >
             @method('PATCH')
             @include('events.form', [

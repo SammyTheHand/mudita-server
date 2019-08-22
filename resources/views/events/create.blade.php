@@ -9,7 +9,7 @@
         <form 
             method="POST" 
             action="/events"
-            class="mt-10 px-16"
+            class="mt-10 px-8"
         >
             @include('events.form', [
                 'event' => new App\Event,
