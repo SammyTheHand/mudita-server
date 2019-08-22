@@ -20,7 +20,7 @@
     </div>
     <div class="bg-brand-green w-3/5 max-h-full">
         <div class="block py-12 px-12">
-            <img src="/assets/image/mudita-multi-fence.png">
+            <img src="/assets/image/mudita-multi-fence-2.png">
         </div>
     </div>
 </div>
