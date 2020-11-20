@@ -4,6 +4,8 @@ Mudita is a web application to provide an elegant platform for real world event 
 We believe that creating events must be a creative and enjoyable experience to be truly fullfilling for not only the maker but the participants.
 We find joy in the happiness and success of others.
 
+https://mudita.fun/
+
 ## Mudita Sponsors
 - **[Digital Ocean](https://www.digitalocean.com)**
 
